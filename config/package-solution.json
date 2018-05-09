@@ -1,0 +1,12 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "project-dashboard-client-side-solution",
+    "id": "d2666f75-cc40-4e94-80f6-7bedebbfe28f",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/project-dashboard.sppkg"
+  }
+}
