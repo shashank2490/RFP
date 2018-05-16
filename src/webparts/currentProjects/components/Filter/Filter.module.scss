@@ -1,0 +1,66 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+$headerHeight: 50px;
+
+.filterBar{
+    box-sizing: border-box;
+    width:100%;
+    height: $headerHeight;
+    background-color: #333333;
+    @include ms-fontSize-mi;
+
+    *{
+        box-sizing: border-box;
+    }
+    .filterPriorityListDiv{
+        display: inline-block;
+        width: 80%;
+        text-align: center;
+        .filterPriorityList{
+            list-style: none;
+            height:$headerHeight;
+            margin: 0;
+            padding-left: 0;
+
+            li{
+                @include ms-fontSize-xs;
+                text-align: center;
+                display: inline-block;
+                min-width: 15%;
+                width:auto;
+                border:none;
+                height:$headerHeight;
+                color: white;
+                
+                padding: 10px 10px; 
+                
+                div{
+                    margin: 5px auto;
+                }
+            }
+
+            li:hover{
+                background: #3c3c3c;
+                cursor: pointer;
+            }
+
+            .liActive{
+                border-bottom: 5px solid #ffffff;
+                background: #3c3c3c;
+                @include ms-fontWeight-semibold
+            }
+        }
+    }
+
+    .advanceFilterDiv{
+        display: inline-block;
+        width: 20%;
+        height: $headerHeight;
+        .button{
+            background: #3c3c3c;
+            color: white;
+            margin: -5px 0 0 0;
+            @include ms-fontSize-mi;
+        }
+    }
+}

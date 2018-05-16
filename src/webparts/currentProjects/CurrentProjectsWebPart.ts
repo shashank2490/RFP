@@ -8,35 +8,59 @@ import {
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'CurrentProjectsWebPartStrings';
-import CurrentProjects from './components/CurrentProjects';
-import { ICurrentProjectsProps } from './components/ICurrentProjectsProps';
+import CurrentProjects from './components/ProjectCardBoard/CurrentProjects';
+import { ICurrentProjectsProps } from './components/ProjectCardBoard/ICurrentProjectsProps';
 import { IProject } from './components/IProject';
+
+import { IGetProjects } from "./dataProvider/IGetProjects";
+import { GetProjects } from "./dataProvider/GetProjects";
+import { IAppState } from './components/App/IAppState';
+import { IAppProps } from './components/App/IAppProps';
+import App from './components/App/App';
+
 
 export interface ICurrentProjectsWebPartProps {
   description: string;
 }
 
 export default class CurrentProjectsWebPart extends BaseClientSideWebPart<ICurrentProjectsWebPartProps> {
+  
+  private projects:IProject[];
+
+  public onInit(): Promise<void> {
+
+    const iGetProjects = new GetProjects(this.context);
+
+    return super.onInit().then(_ => {
+      
+      iGetProjects.getProjects("All").then((response):void =>{
+        //debugger;
+        this.projects = response;
+        this.render();
+      });
+
+    });
+    
+  }
 
   public render(): void {
+    const props:IAppProps = {
+      allProjects: this.projects,
+      projects: this.projects,
+      priority: "All",
+      PriorityMaster: ["All","Low","Moderate","High"],
+      context:this.context 
+    };
 
-    const project:IProject = {
-      Title: "Digital Transformation Partner",
-      BusinessUnit: "Sigma",
-      DueDate: new Date(2018,3,22),
-      Client: "Coca Cola",
-      RequestType: "General Proposal",
-      Status:"Key: 1"      
-    } 
-    
-    const element: React.ReactElement<ICurrentProjectsProps > = React.createElement(
-      CurrentProjects,
+    const element: React.ReactElement<IAppProps> = React.createElement(
+      App,
       {
-        description: this.properties.description,
-        project
+        ...props
       }
     );
 
+    (document.querySelector(".CanvasZone") as any).style.maxWidth="inherit";
+    (document.querySelector("div[class^='pageHeader']") as any).style.height = "0";
     ReactDom.render(element, this.domElement);
   }
 

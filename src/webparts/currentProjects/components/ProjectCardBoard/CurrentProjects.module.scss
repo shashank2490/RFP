@@ -1,0 +1,149 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+$progressBarHeight : 5px;
+$projectIconSize: 70px;
+$lineSeparatorHeight:2px;
+$lowMargin:5px;
+
+@mixin alignCenterWithMargin3{
+  margin: 3px auto;
+}
+@mixin  alignCenterWithMargin4{
+  margin: 4px auto;
+}
+@mixin alignCenterWithMargin5{
+  margin: 5px auto;
+}
+@mixin alignCenterWithMargin6{
+  margin: 6px auto;
+}
+
+.ProjectDetailsPanel{
+  @include ms-fontSize-xs;
+
+  .lowMarginPara{
+    margin: $lowMargin 0px;
+  }
+
+  .rightAlignPara{
+    margin: $lowMargin 0px;
+    text-align: right;
+  }
+
+  > div{
+    > div{
+      >h3{
+        @include ms-fontSize-s;
+        font-weight: bold;
+        margin: 1em 0;
+      }
+    }
+  }
+
+  .peopleHeaderDiv{
+    width:100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    .lineSeperator{
+      @include alignCenterWithMargin3;
+    }
+
+    .peopleHeading{
+      @include ms-fontSize-xs;
+      @include alignCenterWithMargin6;
+      padding: 0 5px 5px 5px;
+      display: table;
+      border-bottom: 2px solid #e6e6e6;
+    }
+  }
+  
+  .ProjectIconDP{
+    border-radius: $projectIconSize/2;
+    width: $projectIconSize;
+    height: $projectIconSize;
+  }
+
+  .lineSeperator{
+    height: $lineSeparatorHeight;
+    margin-bottom: 10px;
+    background: rgb(234, 234, 234);
+  }
+}
+
+.currentProjects {
+  padding: 50px 10px;
+  background: #eaeaea;
+  display: table;
+  @include ms-fontSize-mi;
+  
+  .myCard {
+    margin: 0 auto 50px auto;
+    //float: left;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    //max-width: inherit;
+    min-width: 200px;
+
+    .priorityDiv {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+    .priorityLow {
+      border-left: 6px solid orange;
+    }
+    .priorityMedium {
+      border-left: 6px solid green;
+    }
+    .priorityHigh {
+      border-left: 6px solid red;
+    }
+    .progressBarDiv {
+      float: left;
+      height: $progressBarHeight;
+      background: rgb(234, 234, 234);
+      width: 70%;
+      margin: 8px 10px 6px 0;
+
+      > div{
+        height: $progressBarHeight;
+        background: rgb(0, 120, 212);
+      }
+    }
+    .projectDetails {
+      padding: 10px;
+      > div {
+        width: 100%;
+        display: inline-block;
+        padding: 2px 0;
+      }
+      > div:first-child {
+        height: auto;
+        font-weight: $ms-font-weight-semibold;
+      }
+      > div:last-child {
+        padding: 0 0 2px 0;
+      }
+      
+      .detailsDiv{
+        color: #666666;
+      }
+      .seperatorDiv {
+        text-align: center; //display: block;
+        hr {
+          float: left;
+          width: 70%;
+          margin: 10px 10px 10px 0;
+        }
+        span {
+          float: left;
+          margin-top: 3px;
+        }
+      }
+    }
+  }
+  .myCard:hover:after {
+    border-radius: 6px;
+  }
+}
